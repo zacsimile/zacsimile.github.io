@@ -24,19 +24,23 @@
             background-size: cover;
         }
 
-        a { 
+        h1 { font-size: 2em; font-weight: bold; }
+
+        h2 { font-size: 1em; font-weight: bold; line-height: 1.5em; }
+
+        p { font-size: 1em; line-height: 1.5em; margin: 0 0 1em 0; }
+
+        a { color: #000; }
+
+        nav a { 
             color: #fff; 
             background: #000;
             padding: 0.2em 0.2em;
         }
 
         nav {
-            position: fixed;
-            top: 2em;
-            left: 3em;
             font-size: 1.5em;
             line-height: 1.7em;
-            text-align: center;
         }
 
         .ico {
@@ -45,19 +49,42 @@
             vertical-align: middle;
         }
 
+        .main {
+            position: fixed;
+            text-align: left;
+            top: 2em;
+            left: 3em;
+            width: 50%;
+        }
+
     </style>
 </head>
 <body>
-    <nav>
-        <ul style="list-style-type: none;">
-            <li><a href="files/Geometric_Optics_Problem_Set.pdf">Geometric optics primer</a></li>
-            <li>
-                <a href="files/ZMarin_CV_Februrary2021.pdf">CV</a>
-                <a href="mailto:zach.marin@yale.edu">@</a>
-                <a href="https://github.com/zacsimile"><img src="images/github.png" alt="GitHub" class="ico"></a> 
-                <a href="https://twitter.com/ZachMarin__"><img src="images/twitter.png" alt="Twitter" class="ico"></a>
-            </li>
-        </ul>
-    </nav>
+    <div class="main">
+        <h1>Zach Marin</h1>
+        <h2>Optics and biophysics. Biomedical Engineering Ph.D. Candidate at Yale University.</h2>
+        <p>
+            Inside every cell is a large, complex structure called the <emph>endoplasmic reticulum</emph> (ER).
+            It is the cell's Amazon, sorting and shipping information from the nucleus to everywhere it is 
+            needed. The ER relies on its complex shape to function properly, and malfunction 
+            results in Alzheimer’s, diabetes, cardiac disease, and other illnesses. I develop tools to
+            study how the endoplasmic reticulum's shape changes. In particular, I am building a correlative
+            microscope that can image cellular structures at a resolution of 1/3000th of a human hair, and 
+            image analysis algorithms that link physical laws with subcellular membrane function. Currently,
+            I do this in the <a href="http://www.bewersdorflab.org/">Bewersdorf</a> and Baddeley labs. Ask
+            me about my research, cycling, climbing, or my cats.
+        </p>
+        <nav>
+            <ul style="list-style-type: none;">
+                <li><a href="files/Geometric_Optics_Problem_Set.pdf">Geometric optics primer</a></li>
+                <li>
+                    <a href="files/ZMarin_CV_Februrary2021.pdf">CV</a>
+                    <a href="mailto:zach.marin@yale.edu">@</a>
+                    <a href="https://github.com/zacsimile"><img src="images/github.png" alt="GitHub" class="ico"></a> 
+                    <a href="https://twitter.com/ZachMarin__"><img src="images/twitter.png" alt="Twitter" class="ico"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </body>
 </html>
