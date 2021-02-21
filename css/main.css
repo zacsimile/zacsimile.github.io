@@ -62,8 +62,16 @@ nav {
 }
 
 @media (orientation: portrait) {
-    body { background-size: auto 100%; }
-    h2 { font-size: 1.5em; line-height: 1.7em; }
-    p { font-size: 1.5em; line-height: 1.7em; }
+    body { 
+        background-size: auto 100%; 
+        -webkit-background-size: auto 100%; 
+        -moz-background-size: auto 100%;
+        -o-background-size: auto 100%;
+    }
+    h1 { font-size: 3.5em; }
+    h2 { font-size: 2.2em; line-height: 2.5em; }
+    p { font-size: 2.2em; line-height: 2.5em; }
+    nav { font-size: 2.5em; line-height: 2.7em;}
+    .ico {width: 1.2em; height: 1.2em;}
     .main { width: 100%; padding: 0 6em 4em 0; }
 }
