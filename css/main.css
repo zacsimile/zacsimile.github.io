@@ -11,6 +11,8 @@ body, html {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+html { background: #fff; }
+
 body {
     background-image: url("../images/pinnacles.jpg");
     background-position: center;
@@ -72,6 +74,6 @@ nav {
     h2 { font-size: 2.2em; line-height: 2.5em; }
     p { font-size: 2.2em; line-height: 2.5em; }
     nav { font-size: 2.5em; line-height: 2.7em;}
-    .ico {width: 1.2em; height: 1.2em;}
+    .ico {width: 1.2em; height: 1.2em; }
     .main { width: 100%; padding: 0 3em 2em 0; }
 }
