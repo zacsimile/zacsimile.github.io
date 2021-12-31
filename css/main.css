@@ -65,6 +65,9 @@ nav {
         -moz-background-size: auto 100%;
         -o-background-size: auto 100%;
     }
+    @supports (-webkit-touch-callout: none) {
+        body { background-attachment: scroll; }
+      }
     h1 { font-size: 3.5em; }
     h2 { font-size: 2.2em; line-height: 2.5em; }
     p { font-size: 2.2em; line-height: 2.5em; }
