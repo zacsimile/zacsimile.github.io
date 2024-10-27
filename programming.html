@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Zach Marin - Programming miscellany</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="https://kit.fontawesome.com/968eb9f4c4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="preloader">
+        <img src="images/4pi_illumination_compressed.jpg" width="1" height="1" />
+    </div>
+    <header>
+        <h1>Zach Marin</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">About me</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Other projects</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="https://orcid.org/0000-0001-5341-9911"><i class="ai ai-orcid ai-3x"></i></a></li>
+                <li><a href="https://scholar.google.com/citations?user=pSS31d8AAAAJ&hl=en"><i class="ai ai-google-scholar ai-3x"></i></a></li>
+                <li><a href="https://twitter.com/zacsimile"><i class="fa fa-twitter fa-3x"></i></a></li>
+                <li><a href="https://github.com/zacsimile"><i class="fa fa-github fa-3x"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/zach-marin/"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><a href="cv/marin_cv.pdf"><i class="ai ai-cv ai-3x"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p><h2>Programming miscellany</h2></p>
+        <p>Here's a small collection of tips and tricks I find useful. Check back for updates.</p>
+        <hr />
+        <section>
+            <p>
+                <a href="https://iquilezles.org/articles/distfunctions/">Signed distance functions</a>
+                are useful for simulating and segmenting images and point clouds.
+            </p>
+        </section>
+        <hr />
+        <section>
+            <p>
+                Prototyping functions for Python ctypes can be tedious. Sometimes I use 
+                <a href="https://github.com/trolldbois/ctypeslib">ctypeslib</a>
+                to unroll library functions for me when I want to write hardware control code.
+            </p>
+        </section>
+        <hr />
+        <section>
+            <p>
+                You can create a Windows desktop shortcut for your Python software and
+                run it in the proper Conda environment with
+                <code>%windir%\system32\cmd.exe "/c" cd C:\path\to\software && C:\path\to\conda\Scripts\activate.bat my_environment_name && python my_main_loop.py</code>
+            </p>
+        </section>
+    </main>
+    <footer>
+        Copyright &copy; 2024 Zachary Ryan Connerty-Marin. All rights, all rights, all rights.
+    </footer>
+</body>
+</html>

@@ -37,7 +37,7 @@ header {
     margin: 0 auto;
 }
 
-h1, h2, h3, h4 { 
+h1 { 
     color: #fff; 
     font-size: 2.1vw;
     font-weight: bold; 
@@ -46,17 +46,6 @@ h1, h2, h3, h4 {
     margin: 0 0 0 2vw;
     padding: 0.3vw 0 0 0;
 }
-
-h2, h3, h4 { 
-    font-size: 1.7vw; 
-    margin:0 0 0 1vw;
-    float: none;
-}
-
-h3 { font-size: 1.5vw; }
-
-h4 { font-size: 1.2vw; font-style: italic; }
-
 
 nav { font-size: 0.5vw; }
 nav ul { 
@@ -74,12 +63,20 @@ nav .icons li { float: right; white-space: nowrap; padding: 0 0 0 0.5vw; font-si
 nav .icons li i {padding: 1vw 0 0 0;}
 
 main {
-    background-color:rgba(1, 30, 60, 0.9);
+    background-color:rgba(1, 30, 60, 0.75);
     padding: 2vw;
     text-align: left;
     margin: 2vw auto;
     width: 75vw;
     overflow-y: hidden;
+}
+
+h2 { 
+    color: #fff; 
+    font-size: 1.7vw; 
+    font-weight: bold; 
+    text-align: left; 
+    margin:0 0 0 1vw;
 }
 
 p { 
@@ -93,7 +90,7 @@ p {
 
 .left {width: 47vw;}
 
-ul, ol { line-height: 2.5vw; margin: 0 0 0 3vw; }
+ul { line-height: 2.5vw; margin: 0 0 0 3vw; }
 a { color: #fff; }
 
 .fourohfour {
@@ -111,37 +108,6 @@ section {
 
 section h2 { margin: 1vw 0 1vw 1vw;}
 
-hr { width: 25vw; margin: 0 auto 2vw auto; border-color: #fff;}
-
-code { 
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1vw; 
-    background-color: rgba(0,0,0,0.5); 
-    background-size: cover;
-    line-height: 1vw;
-    display: block;
-    padding: 1vw;
-    border-color: rgba(100,100,100,0.5);
-    border-style: solid;
-    text-align: left;
-}
-
-table {
-    margin: 0 auto;
-    text-align: center;
-}
-
-table tr { padding: 0 auto; text-align: center;}
-
-table tr th { padding: 0 1vw 0 1vw; text-align: center;}
-
-footer {
-    width: 11vw;
-    margin: 0 auto 1vw auto;
-    font-size: 0.5vw;
-    text-align: center;
-}
-
 @media (orientation: portrait) {
     body {
         min-height: 100%;
@@ -156,14 +122,14 @@ footer {
       }
     h1 { font-size: 3.5vw; }
     h2 { font-size: 2.2vw; line-height: 2.5vw; }
-    p { font-size: 2.2vw; line-height: 3.5vw; margin: 0 1vw 2vw 1vw; }
+    p { font-size: 2.2vw; line-height: 3.5vw; }
     /* nav { font-size: 2.5vw; line-height: 2.7vw;} */
     nav ul li {font-size: 2vw; padding: 1.7vw 0 0 2vw;}
     nav .icons li i {font-size: 2vw; padding: 1.7vw 0 0 0;}
     main { width: 90vw; margin: 5vw 5vw; text-align: justify; }
     header {height: 5vw;}
-    .right {float: none; width: 82vw; }
-    .left {width: 84vw;}
+    .right {float: right; margin: 1vw 1vw 0 2vw; width: 24vw;}
+    .left {width: 56vw;}
 
 }
 

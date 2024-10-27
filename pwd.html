@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Zach Marin - Modeling pairwise distances</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="https://kit.fontawesome.com/968eb9f4c4.js" crossorigin="anonymous"></script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX", "output/CommonHTML"],
+          CommonHTML: {
+            scale: 80
+          },
+          tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+          },
+          "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+</head>
+<body>
+    <div id="preloader">
+        <img src="images/4pi_illumination_compressed.jpg" width="1" height="1" />
+    </div>
+    <header>
+        <h1>Zach Marin</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">About me</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Other projects</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="https://orcid.org/0000-0001-5341-9911"><i class="ai ai-orcid ai-3x"></i></a></li>
+                <li><a href="https://scholar.google.com/citations?user=pSS31d8AAAAJ&hl=en"><i class="ai ai-google-scholar ai-3x"></i></a></li>
+                <li><a href="https://twitter.com/zacsimile"><i class="fa fa-twitter fa-3x"></i></a></li>
+                <li><a href="https://github.com/zacsimile"><i class="fa fa-github fa-3x"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/zach-marin/"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><a href="cv/marin_cv.pdf"><i class="ai ai-cv ai-3x"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <p><h2>Modeling pairwise distances</h2></p>
+            <section>
+                <p>
+                    I often use pairwise distance histograms to investigate the shape
+                    of point clouds. Pairwise distances (PWDs) are invariant to rigid 
+                    transformations, insensitive to small perturbations and make no 
+                    assumptions about the underlying shape of a point cloud.
+                    They are also unique to each shape class<sup>1</sup>, which means
+                    we can in theory fit PWD histograms to determine what structures 
+                    are present within a data set. To do this, I have been slowly 
+                    building up a battery of PWD models. The ones I have completed
+                    so far are described here. Noteably, I've left out filled spheres
+                    because <a href="https://doi.org/10.1088/0305-4470/35/31/303">Tu
+                    and Fischbach describe PWDs on spheres</a> really well.
+                </p>
+                <p>
+                    The general framework for building theoretical PWD distributions 
+                    is as follows. Suppose we draw two points \(p, q\) from a 
+                    distribution \(X\). What is the probability \(f(r)\) they are a 
+                    distance \(r \in \mathbb{R}\) apart? Since each variable is treated
+                    as an independent sample from the same distribution, we are 
+                    interested in the autocorrelation of \(X\) at a "delay" 
+                    of \(r\). This is quite convenient as the form of autocorrelation 
+                    integrals allows us to use the convolution theorem. Armed with a 
+                    table of known Fourier transforms (FTs), we barely have to do any 
+                    math at all! We also make the observation that PWDs are strictly 
+                    positive, and so we fold the result from \(-\infty\) to 
+                    \(\infty\) about \(0\).
+                </p>
+                <p>
+                    Each section features the calculated PWDs at the top, and 
+                    explanations for the results below.
+                </p>
+            </section>
+            <hr />
+            <section>
+                <p><h3>Uniform</h3></p>
+                <p>
+                    <table>
+                        <tr>
+                            <th>1D</th>
+                            <th>\[f(r) = \begin{cases}
+                                \frac{2}{b-a}\left(1-\frac{1}{b-a}r\right) & 0 \le r \le b-a \\
+                                0 & \text{elsewhere}
+                                \end{cases}\]</th>
+                        </tr>
+                    </table>
+                </p>
+                <p>
+                    where \(a,b \in \mathbb{R}\) are the lower and upper boundaries, 
+                    respectively, over which the random uniform distribution is defined.
+                </p>
+                <p>
+                    A 1D random uniform is defined by \(\frac{1}{b-a}\text{rect}\left(\frac{x-\frac{b-a}{2}}{b-a}\right)\) 
+                    where \(\text{rect}\) is defined as in reference 2. We calculate the autocorrelation as
+                    \[
+                        \begin{aligned}
+                            f(r) &= \frac{1}{(b-a)^2}\mathcal{F}^{-1}\left\{\left((b-a)\operatorname{sinc}((b-a)\xi)\exp\left(-2\pi i\xi\frac{b-a}{2}\right)(b-a)\operatorname{sinc}((a-b)\xi)\exp\left(2\pi i\xi\frac{b-a}{2}\right)\right)\right\} \\
+                            &= \frac{1}{b-a}\mathcal{F}^{-1}\left\{(b-a)\operatorname{sinc}((b-a)\xi)^2\right\} \\
+                            &= \frac{1}{b-a}\operatorname{tri}\left(\frac{r}{b-a}\right) \\
+                            &= \begin{cases}
+                                \frac{1}{b-a}\left(1-\frac{1}{b-a}r\right) & a-b \le r \le b-a \\
+                                0 & \text{elsewhere}
+                                \end{cases}.
+                        \end{aligned}
+                    \]
+                    where \(\operatorname{sinc}\) and \(\operatorname{tri}\) are defined as in reference 2.
+                    We multiply this by \(2\) to fold about \(0\), as discussed above.
+                </p>
+            </section>
+            <hr />
+            <section>
+                <p><h3>Gaussian</h3></p>
+                <p>
+                    <table>
+                        <tr>
+                            <th>1D</th>
+                            <th>\[f(r) = \frac{1}{\sqrt{\pi}\sigma_x}\exp\left(-\frac{r^2}{4\sigma_x^2}\right)\]</th>
+                        </tr>
+                        <tr>
+                            <th>2D</th>
+                            <th>\[f(r) = \frac{r}{2\sigma_x\sigma_y}\exp\left(-\frac{r^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right) I_0\left(\frac{r^2(\sigma_x^2-\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right)\]</th>
+                        </tr>
+                    </table>
+                </p>
+                <p>
+                    where \(\sigma_x, \sigma_y\) are uncertainties along the \(x\) and
+                    \(y\) axes, where \(x,y \in \mathbb{R}\) and \(I_0\) is the modified 
+                    Bessel function of the first kind.
+                </p>
+                <p><h4>Explanation</h4></p>
+                <p>
+                    Suppose \(X\sim\mathcal{N}(\sigma, \mu)\). We use the FT pair for a
+                    Gaussian from reference 2:
+                    \[f(x) = \exp\left(-a\left(x-\mu\right)^2\right) \stackrel{\mathcal{F}}{\leftrightarrow} \hat{f}(\xi)=\sqrt{\frac{\pi}{a}}\exp(-2\pi i\xi\mu)\exp\left(-\left(\frac{\pi^2\xi^2}{a}\right)\right)\]
+                    and consider the autocorrelation of a Gaussian \(g(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\):
+                    \[
+                        \begin{aligned}
+                        f(r) &= 2\mathcal{F}^{-1}\{g(r)\ast g^*(-r)\} \\
+                        &= 2\frac{1}{2\pi\sigma^2}\mathcal{F}^{-1}\left\{\left(\sqrt{2\pi}\sigma\exp(-2\pi i\xi\mu)\exp(-2\sigma^2\pi^2\xi^2)\right)\left(\sqrt{2\pi}\sigma\exp(2\pi i\xi\mu)\exp(-2\sigma^2\pi^2\xi^2)\right)\right\} \\
+                        &= 2\frac{1}{2\sqrt{\pi}\sigma}\mathcal{F}^{-1}\left\{2\sqrt{\pi}\sigma\exp(-4\sigma^2\pi^2\xi^2)\right\} \\
+                        &= 2\frac{1}{\sqrt{\pi}\sigma}\exp\left(-\frac{r^2}{4\sigma^2}\right)
+                        \end{aligned}
+                    \]
+                    where the factor of \(2\) comes from folding the integral about \(0\), as discussed above.
+                </p>
+                <p>
+                    Now let's cross-correlate the 1D PWD for a Gaussian along \(x\) and \(y\)
+                    \[
+                        \begin{aligned}
+                        f(x,y) &= \mathcal{F}^{-1}\left\{\exp\left(-4\sigma_x^2\pi^2\xi^2\right)\exp\left(-4\sigma_y^2\pi^2\zeta^2\right)\right\} \\
+                        &= \frac{1}{4\pi\sigma_x\sigma_y}\exp\left(-\frac{1}{4}\left(\frac{x^2}{\sigma_x^2}+\frac{y^2}{\sigma_y^2}\right)\right).
+                        \end{aligned}
+                    \]
+                    and re-express it as a one-dimensional function of \(r\). To do this, we convert
+                    the equation to polar coordinates and integrate over the angle \(\theta\):
+                    \[
+                        \begin{aligned}
+                            F(r) &= \int_{-\infty}^\infty\int_{-\infty}^\infty\frac{1}{4\pi\sigma_x\sigma_y}\exp\left(-\frac{1}{4}\left(\frac{x^2}{\sigma_x^2}+\frac{y^2}{\sigma_y^2}\right)\right) dxdy\\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{1}{4}\left(\frac{\rho^2\cos\theta^2}{\sigma_x^2}+\frac{\rho^2\sin\theta^2}{\sigma_y^2}\right)\right)\rho d\rho d\theta \\ 
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\sigma_y^2\cos\theta^2+\sigma_x^2\sin\theta^2\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\sigma_y^2\cos\theta^2+\sigma_x^2(1-\cos\theta^2)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\sigma_y^2\cos\theta^2+\sigma_x^2\left(1-\frac{1}{2}\cos(2\theta) - \frac{1}{2}\right)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\sigma_y^2\cos\theta^2+\frac{\sigma_x^2}{2}-\frac{\sigma_x^2}{2}\cos(2\theta)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\sigma_y^2\left(\frac{1}{2}\cos(2\theta)+\frac{1}{2}\right)+\frac{\sigma_x^2}{2}-\frac{\sigma_x^2}{2}\cos(2\theta)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\frac{\sigma_y^2}{2}\cos(2\theta)+\frac{\sigma_y^2}{2}+\frac{\sigma_x^2}{2}-\frac{\sigma_x^2}{2}\cos(2\theta)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\frac{\sigma_y^2}{2}+\frac{\sigma_x^2}{2}\right)\right)\exp\left(-\frac{\rho^2}{4\sigma_x^2\sigma_y^2}\left(\frac{\sigma_y^2}{2}\cos(2\theta)-\frac{\sigma_x^2}{2}\cos(2\theta)\right)\right)\rho d\rho d\theta \\
+                            &= \frac{1}{4\pi\sigma_x\sigma_y}\int_0^{2\pi}\int_0^r\exp\left(-\frac{\rho^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right)\exp\left(-\frac{\rho^2(\sigma_x^2-\sigma_y^2)\cos(2\theta)}{8\sigma_x^2\sigma_y^2}\right)\rho d\rho d\theta \\
+                            &= \frac{1}{2\pi\sigma_x\sigma_y}\int_0^r\exp\left(-\frac{\rho^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right)\int_0^{\pi}\exp\left(-\frac{\rho^2(\sigma_x^2-\sigma_y^2)\cos(\theta)}{8\sigma_x^2\sigma_y^2}\right)\rho d\rho d\theta \\
+                            &= \frac{1}{2\sigma_x\sigma_y}\int_0^r\exp\left(-\frac{\rho^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right) I_0\left(\frac{\rho^2(\sigma_x^2-\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right)\rho d\rho
+                        \end{aligned}
+                    \]
+                    where we have used the integral definition of the modified Bessel function of the first kind
+                    \[
+                        I_0(z) = \frac{1}{\pi}\int_0^\pi \exp(-z\cos\theta).
+                    \]
+                    Since we are interested in this function at instantaneous \(\rho=r\), we now use the Leibniz rule to calculate
+                    \[
+                        \begin{aligned}
+                            f(r) &= \frac{d}{dr}\left[ \frac{1}{2\sigma_x\sigma_y}\int_0^r\exp\left(-\frac{\rho^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right) I_0\left(\frac{\rho^2(\sigma_x^2-\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right)\rho d\rho\right] \\
+                            &= \frac{r}{2\sigma_x\sigma_y}\exp\left(-\frac{r^2(\sigma_x^2+\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right) I_0\left(\frac{r^2(\sigma_x^2-\sigma_y^2)}{8\sigma_x^2\sigma_y^2}\right).
+                        \end{aligned}
+                    \]
+                    This is the PWD for an elliptic 2D Gaussian.
+                </p>
+            </section>
+            <hr />
+            <section>
+                <p><h3>Shells</h3></p>
+                <p>
+                    <table>
+                        <tr>
+                            <th>2D</th>
+                            <th>\[f(r) = \frac{1}{\pi R\sqrt{1-\frac{r^2}{4R^2}}}\]</th>
+                        </tr>
+                        <tr>
+                            <th>3D</th>
+                            <th>\[f(r) = \frac{r}{2R^2}\]</th>
+                        </tr>
+                    </table>
+                </p>
+                <p>where \(R \in \mathbb{R}\) is the radius of the shell.</p>
+                <p><h4>Explanation</h4></p>
+                <p>
+                    The framework for calculating pairwise distances on shells is a 
+                    bit different from the rest of the PWDs. Consider two points 
+                    \(q,p \in \mathbb{R}^2\) on half a ring of radius \(R\), separated 
+                    by a distance \(s\in\mathbb{R}\), as shown below.
+                </p>
+                <p><img src="images/shell.png" style="display:block; margin: 0 auto; width: 20vw; text-align: center;" /></p>
+                <p>
+                    The angle between these points is given by 
+                    \[\alpha = 2\arcsin\left(\frac{s}{2R}\right)\]
+                    where \(s = |q-p|\). Since \(q\) and \(p\) are both at a radius
+                    \(R\), we only need to integrate over the unique angles \(\alpha\)
+                    to convert from a function of \(s\) to a cumulative pairwise
+                    distribution:
+                    \[
+                        \begin{aligned}
+                            F(r) &= \frac{\int_0^r \frac{ds}{R\sqrt{1-\frac{s^2}{4R^2}}}}{\int_0^{2R} \frac{ds}{R\sqrt{1-\frac{s^2}{4R^2}}}} \\
+                            &= \frac{2\arcsin\left(\frac{r}{2R}\right)}{\pi}
+                        \end{aligned}
+                    \]
+                    where we have made the observation
+                    \[d\alpha = \frac{ds}{R\sqrt{1-\frac{s^2}{4R^2}}}\]
+                    We can now take the derivative of \(F(r)\) to calculate
+                    \[
+                        \begin{aligned}
+                            f(r) &= \frac{d}{dr}\left[\frac{2\arcsin\left(\frac{r}{2R}\right)}{\pi}\right] \\
+                            &= \frac{1}{\pi R\sqrt{1-\frac{r^2}{4R^2}}}
+                        \end{aligned}
+                    \]
+                </p>
+                <p>
+                    For the 3D case, we create an analagous construction over 
+                    \(\alpha\) and their orthogonal angles \(\beta\).
+                </p>
+            </section>
+        </article>
+        <hr />
+        <p><h3>References</h3></p>
+        <p>
+            <ol>
+                <li>
+                    Robert Osada, Thomas Funkhouser, Bernard Chazelle, and David 
+                    Dobkin. Shape distributions. ACM Transactions on Graphics 
+                    (2002).
+                </li>
+                <li>
+                    Joseph W. Goodman. Introduction to Fourier Optics. Roberts 
+                    &amp; Company, third edition (2005).
+                </li>
+            </ol>
+        </p>
+        </article>
+    </main>
+    <footer>
+        Copyright &copy; 2024 Zachary Ryan Connerty-Marin. Look left, look right. By the end of this semester only 1 in 4 localizations won't be background.
+    </footer>
+</body>
+</html>
