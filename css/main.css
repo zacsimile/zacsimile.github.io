@@ -89,6 +89,10 @@ p {
     text-align: justify;
 }
 
+details {
+    margin: 0 1vw 1vw 1vw;
+}
+
 .right {float: right; margin: 1vw 1vw 0 2vw; width: 20vw;}
 
 .left {width: 47vw;}
