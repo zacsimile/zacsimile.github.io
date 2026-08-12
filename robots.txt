@@ -1,0 +1,77 @@
+# =========================================================================
+# OpenAI (ChatGPT / Search / Training)
+# =========================================================================
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# =========================================================================
+# Anthropic (Claude / Search / Training)
+# =========================================================================
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-User
+Disallow: /
+
+User-agent: Claude-SearchBot
+Disallow: /
+
+# =========================================================================
+# Google (Gemini AI Training - Note: This does NOT block Google Search)
+# =========================================================================
+User-agent: Google-Extended
+Disallow: /
+
+# =========================================================================
+# Perplexity AI
+# =========================================================================
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+# =========================================================================
+# Meta (Llama Models)
+# =========================================================================
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+# =========================================================================
+# Apple (Apple Intelligence / Applebot-Extended)
+# =========================================================================
+User-agent: Applebot-Extended
+Disallow: /
+
+# =========================================================================
+# Bytedance / TikTok (Bytespider)
+# =========================================================================
+User-agent: Bytespider
+Disallow: /
+
+# =========================================================================
+# Amazon (Amazonbot)
+# =========================================================================
+User-agent: Amazonbot
+Disallow: /
+
+# =========================================================================
+# Other Common AI Training Crawlers
+# =========================================================================
+User-agent: CCBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Cohere-ai
+Disallow: /

@@ -168,6 +168,7 @@ footer {
     header {height: 5vw;}
     .right {float: none; width: 82vw; }
     .left {width: 84vw;}
+    footer {font-size: 1vw;}
 
 }
 
