@@ -168,7 +168,7 @@ footer {
     header {height: 5vw;}
     .right {float: none; width: 82vw; }
     .left {width: 84vw;}
-    footer {font-size: 1vw;}
+    footer {width: 70vw; font-size: 1vw;}
 
 }
 
