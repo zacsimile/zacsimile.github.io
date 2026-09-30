@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zach Marin - Programming miscellany</title>
+    <link rel="preload" as="image" href="images/4pi_illumination_compressed.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;display=swap">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <script src="https://kit.fontawesome.com/0ffd6a402a.js" crossorigin="anonymous"></script>
+    <link rel="alternate" type="application/rss+xml" title="Zach Marin's blog" href="rss.xml">
 </head>
 <body>
-    <div id="preloader">
-        <img src="images/4pi_illumination_compressed.jpg" width="1" height="1" />
-    </div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header>
-        <h1>Zach Marin</h1>
-        <nav>
+        <a class="site-name" href="index.html">Zach Marin</a>
+        <nav aria-label="Primary navigation">
             <ul>
                 <li><a href="index.html">About me</a></li>
                 <li><a href="research.html">Research</a></li>
-                <li><a href="projects.html">Other projects</a></li>
-            </ul>
-            <ul class="icons">
-                <li><a href="https://orcid.org/0000-0001-5341-9911"><i class="ai ai-orcid ai-3x"></i></a></li>
-                <li><a href="https://scholar.google.com/citations?user=pSS31d8AAAAJ&hl=en"><i class="ai ai-google-scholar ai-3x"></i></a></li>
-                <li><a href="https://bsky.app/profile/zacsimile.bsky.social"><i class="fa fa-brands fa-bluesky fa-3x"></i></a></li>
-                <li><a href="https://github.com/zacsimile"><i class="fa fa-github fa-3x"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/zach-marin/"><i class="fa fa-linkedin fa-3x"></i></a></li>
+                <li><strong><a href="blog.html" aria-current="page">Blog</a></strong></li>
             </ul>
         </nav>
+<nav aria-label="Elsewhere" class="social-links"><ul class="icons"><li><a href="https://orcid.org/0000-0001-5341-9911" aria-label="ORCID" title="ORCID"><i class="ai ai-orcid" aria-hidden="true"></i></a></li><li><a href="https://scholar.google.com/citations?user=pSS31d8AAAAJ&hl=en" aria-label="Google Scholar" title="Google Scholar"><i class="ai ai-google-scholar" aria-hidden="true"></i></a></li><li><a href="https://bsky.app/profile/zacsimile.bsky.social" aria-label="Bluesky" title="Bluesky"><i class="fa fa-brands fa-bluesky" aria-hidden="true"></i></a></li><li><a href="https://github.com/zacsimile" aria-label="GitHub" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a></li><li><a href="https://www.linkedin.com/in/zach-marin/" aria-label="LinkedIn" title="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li></ul></nav>
     </header>
-    <main>
-        <p><h2>Programming miscellany</h2></p>
+    <main id="main-content" tabindex="-1">
+        <h1>Programming miscellany</h1>
         <p>Here's a small collection of tips and tricks I find useful.</p>
         <hr />
         <section>
-            <p>
-                <a href="https://iquilezles.org/articles/distfunctions/">Signed distance functions</a>
-                are useful for simulating and segmenting images and point clouds.
-            </p>
+        <p>
+        <a href="https://iquilezles.org/articles/distfunctions/">Signed distance functions</a>
+        are useful for simulating and segmenting images and point clouds.
+        </p>
         </section>
         <hr />
         <section>
-            <p>
-                Prototyping functions for Python ctypes can be tedious. Sometimes I use 
-                <a href="https://github.com/trolldbois/ctypeslib">ctypeslib</a>
-                to unroll library functions for me when I want to write hardware control code.
-            </p>
+        <p>
+        Prototyping functions for Python ctypes can be tedious. Sometimes I use
+        <a href="https://github.com/trolldbois/ctypeslib">ctypeslib</a>
+        to unroll library functions for me when I want to write hardware control code.
+        </p>
         </section>
         <hr />
         <section>
-            <p>
-                You can create a Windows desktop shortcut for your Python software and
-                run it in the proper Conda environment with
-                <code>%windir%\system32\cmd.exe "/c" cd C:\path\to\software && C:\path\to\conda\Scripts\activate.bat my_environment_name && python my_main_loop.py</code>
-            </p>
+        <p>
+        You can create a Windows desktop shortcut for your Python software and
+        run it in the proper Conda environment with
+        <code>%windir%\system32\cmd.exe "/c" cd C:\path\to\software && C:\path\to\conda\Scripts\activate.bat my_environment_name && python my_main_loop.py</code>
+        </p>
         </section>
+        <p class="post-date">Created <time datetime="2024-10-27">October 27, 2024</time></p>
     </main>
-    <footer>
-        Copyright &copy; 2026 Zachary Ryan Connerty-Marin. All rights, all rights, all rights.
-    </footer>
+    <footer>Copyright &copy; 2026 Zachary Ryan Connerty-Marin. All rights, all rights, all rights.</footer>
 </body>
 </html>

@@ -1,3 +1,9 @@
+# Allow search indexing and user-requested retrieval; opt out of known training crawlers.
+# robots.txt relies on crawler compliance and cannot guarantee exclusion from training.
+
+User-agent: *
+Allow: /
+
 # =========================================================================
 # OpenAI (ChatGPT / Search / Training)
 # =========================================================================
@@ -5,10 +11,10 @@ User-agent: GPTBot
 Disallow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 User-agent: OAI-SearchBot
-Disallow: /
+Allow: /
 
 # =========================================================================
 # Anthropic (Claude / Search / Training)
@@ -17,13 +23,13 @@ User-agent: ClaudeBot
 Disallow: /
 
 User-agent: Claude-User
-Disallow: /
+Allow: /
 
 User-agent: Claude-SearchBot
-Disallow: /
+Allow: /
 
 # =========================================================================
-# Google (Gemini AI Training - Note: This does NOT block Google Search)
+# Google (opts out of Gemini training AND grounding; Google Search stays allowed)
 # =========================================================================
 User-agent: Google-Extended
 Disallow: /
@@ -32,10 +38,10 @@ Disallow: /
 # Perplexity AI
 # =========================================================================
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
 
 User-agent: Perplexity-User
-Disallow: /
+Allow: /
 
 # =========================================================================
 # Meta (Llama Models)
@@ -44,7 +50,7 @@ User-agent: Meta-ExternalAgent
 Disallow: /
 
 User-agent: Meta-ExternalFetcher
-Disallow: /
+Allow: /
 
 # =========================================================================
 # Apple (Apple Intelligence / Applebot-Extended)

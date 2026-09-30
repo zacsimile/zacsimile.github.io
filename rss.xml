@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Zach Marin's blog</title>
+    <link>https://zacsimile.github.io/blog.html</link>
+    <description>Notes, experiments, and miscellaneous investigations by Zach Marin.</description>
+    <language>en</language>
+    <item>
+      <title>Cat math</title>
+      <link>https://zacsimile.github.io/cat.html</link>
+      <guid>https://zacsimile.github.io/cat.html</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Does paw size or weight matter more when a hungry cat stands on your chest?</description>
+    </item>
+    <item>
+      <title>Modeling pairwise distances</title>
+      <link>https://zacsimile.github.io/pwd.html</link>
+      <guid>https://zacsimile.github.io/pwd.html</guid>
+      <pubDate>Wed, 30 Oct 2024 00:00:00 GMT</pubDate>
+      <description>Models of pairwise distance distributions for investigating the shape of point clouds.</description>
+    </item>
+    <item>
+      <title>Programming miscellany</title>
+      <link>https://zacsimile.github.io/programming.html</link>
+      <guid>https://zacsimile.github.io/programming.html</guid>
+      <pubDate>Sun, 27 Oct 2024 00:00:00 GMT</pubDate>
+      <description>A collection of useful programming notes: signed distance functions, Python ctypes, and Conda shortcuts.</description>
+    </item>
+    <item>
+      <title>The fastest geometric optics primer in the Northeast</title>
+      <link>https://zacsimile.github.io/optics.html</link>
+      <guid>https://zacsimile.github.io/optics.html</guid>
+      <pubDate>Sat, 20 Feb 2021 00:00:00 GMT</pubDate>
+      <description>A short geometric optics primer and problem set, originally dated February 20, 2021.</description>
+    </item>
+  </channel>
+</rss>
